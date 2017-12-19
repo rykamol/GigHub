@@ -1,4 +1,5 @@
 ﻿using GigHub.Models;
+using System;
 using System.Collections.Generic;
 
 namespace GigHub.ViewModles
@@ -11,5 +12,9 @@ namespace GigHub.ViewModles
         public byte Genre { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
 
+        public DateTime DateTime
+        {
+            get { return DateTime.Parse(string.Format("{0} {1}", Date, Time)); }
+        }
     }
 }
