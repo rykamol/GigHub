@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201712191011186_PopulateGenresScript.Designer.cs">
       <DependentUpon>201712191011186_PopulateGenresScript.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712191821195_AddForignKeyPropertytoGig.cs" />
+    <Compile Include="Migrations\201712191821195_AddForignKeyPropertytoGig.Designer.cs">
+      <DependentUpon>201712191821195_AddForignKeyPropertytoGig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -318,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712191011186_PopulateGenresScript.resx">
       <DependentUpon>201712191011186_PopulateGenresScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712191821195_AddForignKeyPropertytoGig.resx">
+      <DependentUpon>201712191821195_AddForignKeyPropertytoGig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
