@@ -226,18 +226,30 @@
     <Compile Include="Migrations\201712191821195_AddForignKeyPropertytoGig.Designer.cs">
       <DependentUpon>201712191821195_AddForignKeyPropertytoGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712221235366_AddedNameFieldInApplicationUserModel.cs" />
+    <Compile Include="Migrations\201712221235366_AddedNameFieldInApplicationUserModel.Designer.cs">
+      <DependentUpon>201712221235366_AddedNameFieldInApplicationUserModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModles\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModles\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModles\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModles\ForgotViewModel.cs" />
+    <Compile Include="ViewModles\LoginViewModel.cs" />
+    <Compile Include="ViewModles\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModles\FutureDate.cs" />
     <Compile Include="ViewModles\GigFormViewModel.cs" />
+    <Compile Include="ViewModles\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModles\SendCodeViewModel.cs" />
     <Compile Include="ViewModles\ValidTime.cs" />
+    <Compile Include="ViewModles\VerifyCodeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -327,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712191821195_AddForignKeyPropertytoGig.resx">
       <DependentUpon>201712191821195_AddForignKeyPropertytoGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221235366_AddedNameFieldInApplicationUserModel.resx">
+      <DependentUpon>201712221235366_AddedNameFieldInApplicationUserModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
