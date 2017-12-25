@@ -266,6 +266,7 @@
     <Compile Include="ViewModles\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModles\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModles\ForgotViewModel.cs" />
+    <Compile Include="ViewModles\GigsViewModel.cs" />
     <Compile Include="ViewModles\LoginViewModel.cs" />
     <Compile Include="ViewModles\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -316,7 +317,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Gigs.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />

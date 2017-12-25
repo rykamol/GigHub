@@ -1,10 +1,11 @@
-﻿@model IEnumerable<GigHub.Models.Gig>
+﻿@model GigHub.ViewModles.GigsViewModel
 @{
     ViewBag.Title = "Home Page";
 }
+<h1>@Model.Heading.</h1>
 
-<ul class="gigs">
-    @foreach (var gig in Model)
+<ul class="gigs voffset5">
+    @foreach (var gig in Model.UpComingGigs)
     {
         <li>
             <div class="date">
@@ -16,12 +17,20 @@
             <div class="details">
                 <span class="artist">
                     @gig.Artist.Name
-                    <button data-user-id="@gig.ArtistId"class="btn btn-link btn-sm js-toggle-follow" >Follow</button>
+                    @if (Model.ShowActions)
+                    {
+                        <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-follow">Follow</button>
+
+                    }
                 </span>
                 <span class="genre">
                     @gig.Genre.Name
                 </span>
-                <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendence">Going?</button>
+                @if (Model.ShowActions)
+                {
+                    <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendence">Going?</button>
+
+                }
             </div>
         </li>
     }
@@ -32,7 +41,7 @@
         $(document).ready(function () {
             $(".js-toggle-attendence").click(function (e) {
                 var button = $(e.target);
-                $.post("/api/attendences", { gigId : button.attr("data-gig-id") })
+                $.post("/api/attendences", { gigId: button.attr("data-gig-id") })
                     .done(function () {
                         button
                             .removeClass("btn-default")
