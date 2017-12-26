@@ -15,6 +15,5 @@ namespace GigHub.Models
 
         public ApplicationUser Follower { get; set; }
         public ApplicationUser Followee { get; set; }
-
     }
 }
