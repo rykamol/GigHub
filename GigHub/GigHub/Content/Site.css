@@ -94,7 +94,7 @@ h6,
 
 .form-control {
     font-size: 17px;
-    padding: 18px 15px;
+    height: 40px;
     -ms-border-radius: 7px;
     border-radius: 9px;
 }
@@ -153,7 +153,7 @@ h6,
     position: absolute;
     top: 0;
     left: 100px;
-    width: 125px;
+    
 }
 
 .gigs>li .details .artist {
@@ -163,4 +163,14 @@ h6,
 
 .gigs>li .details .genre {
     font-size: 15px;
+}
+
+ 
+.gigs>li .actions {
+    font-size: 15px;
+    display: none;
+}
+
+.gigs>li:hover .actions {
+    display: block;
 }

@@ -23,7 +23,10 @@ namespace GigHub.Controllers
         {
             var userId=User.Identity.GetUserId();
             var gigs = Context.Gigs
-                .Where(g => g.ArtistId == userId && g.DateTime>DateTime.Now)
+                .Where(g => 
+                g.ArtistId == userId 
+                && g.DateTime>DateTime.Now 
+                && !g.IsCanceled)
                 .Include(g=>g.Genre)
                 .ToList();
             return View(gigs);
@@ -53,9 +56,50 @@ namespace GigHub.Controllers
         {
             var viewModel = new GigFormViewModel
             {
-                Genres = Context.Genres.ToList()
+                Genres = Context.Genres.ToList(),
+                Heading = "Create a Gig"
             };
-            return View(viewModel);
+            return View("GigForm", viewModel);
+        }
+
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            var userId=User.Identity.GetUserId();
+            var gigs = Context.Gigs.Single(x => x.Id == id && x.ArtistId==userId);
+
+            var viewModel = new GigFormViewModel
+            {
+                Genres = Context.Genres.ToList(),
+                Date = gigs.DateTime.ToString("d MMM yyyy"),
+                Time = gigs.DateTime.ToString("HH:mm"),
+                Genre = gigs.GenreId,
+                Vanue = gigs.Vanue,
+                Id = gigs.Id,
+                Heading = "Edit a Gig"
+          
+            };
+            return View("GigForm", viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(GigFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Genres = Context.Genres.ToList();
+                return View("GigForm", viewModel);
+            }
+            var userId = User.Identity.GetUserId();
+            var gigs = Context.Gigs.Single(x => x.Id == viewModel.Id && x.ArtistId == userId);
+            gigs.Vanue = viewModel.Vanue;
+            gigs.DateTime = viewModel.GetDateTime();
+            gigs.GenreId = viewModel.Genre;
+
+            Context.SaveChanges();
+            return RedirectToAction("MyUpcomingGigs", "Gigs");
         }
 
         [Authorize]
@@ -66,14 +110,15 @@ namespace GigHub.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Genres = Context.Genres.ToList();
-                return View("Create",viewModel);
+                return View("GigForm",viewModel);
             } 
             var gigs = new Gig()
             {
                 ArtistId = User.Identity.GetUserId(),
                 DateTime =viewModel.GetDateTime(),
                 GenreId = viewModel.Genre,
-                Vanue = viewModel.Vanue
+                Vanue = viewModel.Vanue,
+                
             };
 
             Context.Gigs.Add(gigs);
