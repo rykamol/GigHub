@@ -93,10 +93,13 @@ namespace GigHub.Controllers
                 return View("GigForm", viewModel);
             }
             var userId = User.Identity.GetUserId();
-            var gigs = Context.Gigs.Single(x => x.Id == viewModel.Id && x.ArtistId == userId);
-            gigs.Vanue = viewModel.Vanue;
-            gigs.DateTime = viewModel.GetDateTime();
-            gigs.GenreId = viewModel.Genre;
+            var gigs = Context.Gigs
+                .Include(x=>x.Attendences.Select(a=>a.Attendee))
+                .Single(x => x.Id == viewModel.Id && x.ArtistId == userId);
+
+            gigs.Modify(viewModel.Vanue,viewModel.GetDateTime(),viewModel.Genre);
+
+           
 
             Context.SaveChanges();
             return RedirectToAction("MyUpcomingGigs", "Gigs");

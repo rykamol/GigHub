@@ -216,6 +216,7 @@
     <Compile Include="Controllers\Api\AttendencesController.cs" />
     <Compile Include="Controllers\Api\FollowingsController.cs" />
     <Compile Include="Controllers\Api\GigsController.cs" />
+    <Compile Include="Controllers\Api\NotificationsController.cs" />
     <Compile Include="Controllers\FolloweesController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -261,6 +262,14 @@
     <Compile Include="Migrations\201712261715091_AddIscanceledToGig.Designer.cs">
       <DependentUpon>201712261715091_AddIscanceledToGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712290604227_AddNotification.cs" />
+    <Compile Include="Migrations\201712290604227_AddNotification.Designer.cs">
+      <DependentUpon>201712290604227_AddNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051941418_RenameOriginalVanue.cs" />
+    <Compile Include="Migrations\201801051941418_RenameOriginalVanue.Designer.cs">
+      <DependentUpon>201801051941418_RenameOriginalVanue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Attendence.cs" />
@@ -269,6 +278,9 @@
     <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="ViewModles\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModles\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModles\ForgotPasswordViewModel.cs" />
@@ -388,6 +400,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712261715091_AddIscanceledToGig.resx">
       <DependentUpon>201712261715091_AddIscanceledToGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712290604227_AddNotification.resx">
+      <DependentUpon>201712290604227_AddNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051941418_RenameOriginalVanue.resx">
+      <DependentUpon>201801051941418_RenameOriginalVanue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
