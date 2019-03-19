@@ -20,6 +20,9 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
+            if (userId == dto.FolloweeId)
+                return BadRequest("You can't follow on yoursesf");
+
             if (_context.Followings.Any(f => f.FolloweeId == userId && f.FolloweeId == dto.FolloweeId))
                 return BadRequest("Following already exists.");
 

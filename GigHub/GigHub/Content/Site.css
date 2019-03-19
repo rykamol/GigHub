@@ -39,19 +39,31 @@ span.field-validation-error {
  
 
 /*Override Bootstrap.css*/
-.navbar-inverse {
+/*.navbar-inverse {
     background-color: #ff4342;
     border-color: #ff4342;
+}*/
+.navbar-inverse {
+    background-color: red;
+    border-color: red;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
 }
 
-    .navbar-inverse .navbar-nav > li > a {
-        color: #fff;
-    }
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+.navbar-inverse .notifications {
+    position: relative;
+}
 
-    .navbar-inverse .navbar-brand {
-        color: #fff;
-    }
-
+    .navbar-inverse .badge {
+        position: absolute;
+        top: 8px;
+        right: -1px;
+        background-color: #aa2a2a;
+    } 
     .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
        background-color: rgba(205, 40, 39, 0.55);
     }
@@ -173,4 +185,18 @@ h6,
 
 .gigs>li:hover .actions {
     display: block;
+}
+
+ul.notifications {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.notifications > li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+ul.notifications > li:last-child {
+    border-bottom: none;
 }

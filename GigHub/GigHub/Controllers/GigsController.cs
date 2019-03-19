@@ -19,28 +19,14 @@ namespace GigHub.Controllers
         }
 
         [Authorize]
-        public ActionResult MyUpcomingGigs()
-        {
-            var userId=User.Identity.GetUserId();
-            var gigs = Context.Gigs
-                .Where(g => 
-                g.ArtistId == userId 
-                && g.DateTime>DateTime.Now 
-                && !g.IsCanceled)
-                .Include(g=>g.Genre)
-                .ToList();
-            return View(gigs);
-        }
-
-        [Authorize]
-         public ActionResult Attending()
+        public ActionResult Attending()
         {
             string userId = User.Identity.GetUserId();
 
             var gigs = Context.Attendences.Where(a => a.AttendeeId == userId)
                 .Select(g => g.Gig)
-                .Include(a=>a.Genre)
-                .Include(a=>a.Artist)
+                .Include(a => a.Genre)
+                .Include(a => a.Artist)
                 .ToList();
             var viewModel = new GigsViewModel()
             {
@@ -63,10 +49,48 @@ namespace GigHub.Controllers
         }
 
         [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(GigFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Genres = Context.Genres.ToList();
+                return View("GigForm", viewModel);
+            }
+            var gigs = new Gig()
+            {
+                ArtistId = User.Identity.GetUserId(),
+                DateTime = viewModel.GetDateTime(),
+                GenreId = viewModel.Genre,
+                Vanue = viewModel.Vanue,
+
+            };
+
+            Context.Gigs.Add(gigs);
+            Context.SaveChanges();
+            return RedirectToAction("MyUpcomingGigs", "Gigs");
+        }
+
+        [Authorize]
+        public ActionResult MyUpcomingGigs()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = Context.Gigs
+                .Where(g =>
+                    g.ArtistId == userId
+                    && g.DateTime > DateTime.Now
+                    && !g.IsCanceled)
+                .Include(g => g.Genre)
+                .ToList();
+            return View(gigs);
+        }
+
+        [Authorize]
         public ActionResult Edit(int id)
         {
-            var userId=User.Identity.GetUserId();
-            var gigs = Context.Gigs.Single(x => x.Id == id && x.ArtistId==userId);
+            var userId = User.Identity.GetUserId();
+            var gigs = Context.Gigs.Single(x => x.Id == id && x.ArtistId == userId);
 
             var viewModel = new GigFormViewModel
             {
@@ -77,7 +101,7 @@ namespace GigHub.Controllers
                 Vanue = gigs.Vanue,
                 Id = gigs.Id,
                 Heading = "Edit a Gig"
-          
+
             };
             return View("GigForm", viewModel);
         }
@@ -94,37 +118,13 @@ namespace GigHub.Controllers
             }
             var userId = User.Identity.GetUserId();
             var gigs = Context.Gigs
-                .Include(x=>x.Attendences.Select(a=>a.Attendee))
+                .Include(x => x.Attendences.Select(a => a.Attendee))
                 .Single(x => x.Id == viewModel.Id && x.ArtistId == userId);
 
-            gigs.Modify(viewModel.Vanue,viewModel.GetDateTime(),viewModel.Genre);
+            gigs.Modify(viewModel.Vanue, viewModel.GetDateTime(), viewModel.Genre);
 
-           
 
-            Context.SaveChanges();
-            return RedirectToAction("MyUpcomingGigs", "Gigs");
-        }
 
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(GigFormViewModel viewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                viewModel.Genres = Context.Genres.ToList();
-                return View("GigForm",viewModel);
-            } 
-            var gigs = new Gig()
-            {
-                ArtistId = User.Identity.GetUserId(),
-                DateTime =viewModel.GetDateTime(),
-                GenreId = viewModel.Genre,
-                Vanue = viewModel.Vanue,
-                
-            };
-
-            Context.Gigs.Add(gigs);
             Context.SaveChanges();
             return RedirectToAction("MyUpcomingGigs", "Gigs");
         }
