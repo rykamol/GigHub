@@ -47,7 +47,7 @@
             <li><%=notification.gig.artist.name%> has cenceled the gig at <%=notification.gig.vanue%> at <%=notification.gig.dateTime%></li>
             <%}
             else if(notification.type == 2)
-            {%>
+            {
             var changes=[],originalValues = [],newValues=[];
             if(notification.originalDateTime!=notification.gig.dateTime){
             changes.push('date/time');
@@ -85,7 +85,8 @@
                         var compiled = _.template($("#notification-template").html());
                         return compiled({ notifications: notifications });
                     },
-                    placement: "bottom"
+                    placement: "bottom",
+                    template: '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
                 });
             });
         });

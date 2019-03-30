@@ -11,19 +11,19 @@ namespace GigHub.Models
 
         public bool IsCanceled { get; private set; }
 
-        
+
         public ApplicationUser Artist { get; set; }
 
         [Required]
         public string ArtistId { get; set; }
-        
+
         public DateTime DateTime { get; set; }
 
         [Required]
         [StringLength(255)]
         public string Vanue { get; set; }
 
-       
+
         public Genre Genre { get; set; }
 
         [Required]
@@ -33,7 +33,7 @@ namespace GigHub.Models
 
         public Gig()
         {
-            Attendences=new List<Attendence>();
+            Attendences = new List<Attendence>();
         }
 
         public void Cencel()
@@ -49,13 +49,13 @@ namespace GigHub.Models
 
         public void Modify(string viewModelVanue, DateTime getDateTime, byte viewModelGenre)
         {
-            var notification=Notification.GigUpdated(this,getDateTime,viewModelVanue);
-            
+            var notification = Notification.GigUpdated(this, getDateTime, viewModelVanue);
+
             Vanue = viewModelVanue;
-             DateTime = getDateTime;
+            DateTime = getDateTime;
             GenreId = viewModelGenre;
 
-            foreach (var attendee in Attendences.Select(a=>a.Attendee))
+            foreach (var attendee in Attendences.Select(a => a.Attendee))
             {
                 attendee.Notify(notification);
             }

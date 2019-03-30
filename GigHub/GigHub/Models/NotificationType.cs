@@ -2,8 +2,8 @@
 {
     public enum NotificationType
     {
-        GigUpdate=1,
-        GigCanceled=2,
-        GigCreated=3
+        GigCanceled=1,
+        GigUpdate = 2,
+        GigCreated = 3
     }
 }
