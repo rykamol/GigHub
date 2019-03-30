@@ -12,6 +12,8 @@
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
+
+
 .dl-horizontal dt {
     white-space: normal;
 }
@@ -43,6 +45,10 @@ span.field-validation-error {
     background-color: #ff4342;
     border-color: #ff4342;
 }*/
+.popover {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
 .navbar-inverse {
     background-color: red;
     border-color: red;
@@ -203,4 +209,8 @@ h6,
 
 .popover-notifications ul.notifications > li:last-child {
     border-bottom: none;
+}
+
+.popover-notifications ul.notifications .highlight {
+    font-weight: bold;
 }
